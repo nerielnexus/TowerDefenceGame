@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6025157757014541020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6025157757014541010}
+  - component: {fileID: 6025157757014541011}
+  m_Layer: 0
+  m_Name: TowerBuildManager
+  m_TagString: TowerBuildManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6025157757014541010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025157757014541020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.433414, y: -8.703376, z: 3.9263182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6025157757014541011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025157757014541020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e967bddbb0cf8458a6352760fb45cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tbmActivated: 0
+  towerRenderScale: 3
+  buildCubeList: []
+  buildableTowerList:
+  - {fileID: 600631369132792485, guid: d0d81e0a5d901ef42a3ddcf94203e65c, type: 3}
+  - {fileID: 776155863527964309, guid: 4a3e49e6502184f479bfcbf7bc4a3e35, type: 3}
+  - {fileID: 181053762891626079, guid: ac2b6ef7da95b8c4b9cefbf9a44839e9, type: 3}
+  - {fileID: 5561190250164772654, guid: 16c6aaac505cde449829bf464273a944, type: 3}
+  buildableTowerNameList:
+  - TOWERBIGCANNON
+  - TOWERMUSHROOM
+  - TOWERMACHINEGUN
+  - TOWERCORN
+  mapObjectName: 
+  roads: {fileID: 0}
+  buildSite: {fileID: 0}
+  keyBuildTower: 103
+  modeTowerBuild: 0
+  keySelectTowerType: 104
+  currentTypeOfTower: 0
+  buildabletowertypetext: {fileID: 0}
+  towerBuildModeIndicator: {fileID: 0}
