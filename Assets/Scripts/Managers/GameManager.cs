@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour
     //==============================
 
     [Header("Other Scene-Relative Managers")]
-    public TitleUIManager tuiMgr = null;
+    public GameObject managerObject = null;
 
     [Header("Elements relate with other Managers")]
     public int currentCredit = 0;
@@ -81,24 +80,51 @@ public class GameManager : MonoBehaviour
 
     public void DetectInputs(string _message)
     {
-        if(_message.Equals(tuiMgr.canvasTitle.name + "/OnClick"))
+        TitleUIManager tuim = managerObject.GetComponent<TitleUIManager>();
+
+        if(_message.Equals(tuim.canvasTitle.name + "/OnClick"))
         {
             gameInitialStarted = true;
-            tuiMgr.gameInitialStart = true;
-            tuiMgr.canvasTitle.SetActive(false);
-            tuiMgr.canvasMainMenu.SetActive(true);
+            tuim.gameInitialStart = true;
+            tuim.canvasTitle.SetActive(false);
+            tuim.canvasMainMenu.SetActive(true);
         }
     }
 
     public void CheckWhichSceneIsLoaded()
     {
-        if(SceneManager.GetActiveScene().name.Equals("SceneTitle"))
-        {
-            tuiMgr = GameObject.Find("Title UI Manager").GetComponent<TitleUIManager>()
-                ?? throw new System.Exception(nameof(GameManager) + " cannot find " + nameof(TitleUIManager));
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-            tuiMgr.gameInitialStart = gameInitialStarted;
-            tuiMgr.LoadCanvas();
+        switch(currentSceneName)
+        {
+            case "SceneTitle":
+                managerObject = GameObject.Find("Title UI Manager")
+                    ?? throw new System.Exception(nameof(GameManager) + "cannot find " + nameof(TitleUIManager) + " object");
+
+                managerObject.GetComponent<TitleUIManager>().gameInitialStart = gameInitialStarted;
+                managerObject.GetComponent<TitleUIManager>().LoadCanvas();
+                break;
+
+            case "SceneGamePlay":
+                if (!GameObject.Find("MapManager"))
+                    throw new System.Exception(nameof(GameManager) + "cannot find " + nameof(MapManager) + " object");
+
+                if (!GameObject.Find("MobSpawnManager"))
+                    throw new System.Exception(nameof(GameManager) + "cannot find " + nameof(MobManager) + " object");
+
+                if (!GameObject.Find("TowerBuildManager"))
+                    throw new System.Exception(nameof(GameManager) + "cannot find " + nameof(TowerBuildManager) + " object");
+
+                if (!GameObject.Find("ScoreManager"))
+                    throw new System.Exception(nameof(GameManager) + "cannot find " + nameof(ScoreManager) + " object");
+
+                if (!GameObject.Find("UIManager"))
+                    throw new System.Exception(nameof(GameManager) + "cannot find " + nameof(InGameUIManager) + " object");
+
+                break;
+
+            case "SceneUpgrade":
+                break;
         }
     }
 
@@ -110,7 +136,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += delegate { CheckWhichSceneIsLoaded(); };
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += delegate { CheckWhichSceneIsLoaded(); };
         }
         else
         {
