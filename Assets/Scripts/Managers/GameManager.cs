@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public GameObject managerObject = null;
 
     [Header("Elements relate with other Managers")]
+    public int initialStartCredit = 100;
     public int currentCredit = 0;
     public int userTypedCredit = 0;
     public bool gameInitialStarted = false;

@@ -10,6 +10,7 @@ public class TitleUIManager : MonoBehaviour
     public GameObject canvasMainMenu = null;
     public GameObject canvasOption = null;
     public GameObject canvasCredit = null;
+    public GameObject canvasCheat = null;
 
     // 게임 첫 실행 확인용, 그래야 타이틀 화면을 덜 보여줄테니
     [Header("Title Screen Elements")]
@@ -21,10 +22,10 @@ public class TitleUIManager : MonoBehaviour
     public UnityEngine.UI.Button buttonCredit = null;
 
     [Header("Option Elements")]
-    public TMPro.TMP_InputField inputfieldCredit = null;
-    public UnityEngine.UI.Button buttonSaveCredit = null;
-    public UnityEngine.UI.Button buttonOptionToMain = null;
-    public TMPro.TMP_Text textCheckLegitCreditInput = null;
+    public UnityEngine.UI.Button buttonOpenSettings = null;
+    public UnityEngine.UI.Button buttonSaveSettingsChange = null;
+    public UnityEngine.UI.Button buttonRevertSettingChange = null;
+    public UnityEngine.UI.Button buttonOpenCheatPanel = null;
 
     // 시쳇말로 '만든놈들' 화면용 변수들
     [Header("Credit Elements")]
@@ -94,31 +95,32 @@ public class TitleUIManager : MonoBehaviour
                 canvasCredit.SetActive(true);
             });
 
-        if (inputfieldCredit == null)
-            throw new System.Exception(nameof(GameManager) + " - credit input field is null");
+        // 설정 settings 관련
+        if (buttonOpenSettings == null)
+            throw new System.Exception(nameof(TitleUIManager) + " cannot find reference of " + nameof(buttonOpenSettings));
 
-        inputfieldCredit.onValueChanged.AddListener(
+        if (buttonSaveSettingsChange == null)
+            throw new System.Exception(nameof(TitleUIManager) + " cannot find reference of " + nameof(buttonSaveSettingsChange));
+
+        if (buttonRevertSettingChange == null)
+            throw new System.Exception(nameof(TitleUIManager) + " cannot find reference of " + nameof(buttonRevertSettingChange));
+
+        if (buttonOpenCheatPanel == null)
+            throw new System.Exception(nameof(TitleUIManager) + " cannot find reference of " + nameof(buttonOpenCheatPanel));
+
+        if(canvasCheat == null)
+            throw new System.Exception(nameof(TitleUIManager) + " cannot find reference of " + nameof(canvasCheat));
+
+        buttonOpenSettings.onClick.AddListener(
             delegate
             {
-                if (int.TryParse(inputfieldCredit.text, out int resultCredit))
-                {
-                    GameManager.Instance.userTypedCredit = resultCredit;
-                    textCheckLegitCreditInput.text = "Typed integer can be saved as Initial Credit";
-                }
-                else
-                {
-                    textCheckLegitCreditInput.text = "Credit must be positive integer";
-                }
+                canvasOption.SetActive(true);
             });
 
-        if (buttonSaveCredit == null)
-            throw new System.Exception(nameof(GameManager) + " - save credit button is null");
-
-        buttonSaveCredit.onClick.AddListener(
+        buttonSaveSettingsChange.onClick.AddListener(
             delegate
             {
-                GameManager.Instance.currentCredit = GameManager.Instance.userTypedCredit;
-
+                Debug.Log("Setting has changed successfully");
                 canvasOption.SetActive(false);
 
                 buttonStartGame.gameObject.SetActive(true);
@@ -127,14 +129,10 @@ public class TitleUIManager : MonoBehaviour
                 buttonUpgradeScene.gameObject.SetActive(true);
             });
 
-        if (buttonOptionToMain == null)
-            throw new System.Exception(nameof(GameManager) + " - back to main button is null");
-
-        buttonOptionToMain.onClick.AddListener(
+        buttonRevertSettingChange.onClick.AddListener(
             delegate
             {
-                GameManager.Instance.userTypedCredit = 0;
-
+                Debug.Log("Unsaved change of settings has deleted");
                 canvasOption.SetActive(false);
 
                 buttonStartGame.gameObject.SetActive(true);
@@ -143,8 +141,13 @@ public class TitleUIManager : MonoBehaviour
                 buttonUpgradeScene.gameObject.SetActive(true);
             });
 
-        if (textCheckLegitCreditInput == null)
-            throw new System.Exception(nameof(GameManager) + " - check legit credit input text is null");
+        buttonOpenCheatPanel.onClick.AddListener(
+            delegate
+            {
+                canvasCheat.SetActive(true);
+            });
+
+
 
         if (creditText == null)
             throw new System.Exception(nameof(GameManager) + " - credit text is null");

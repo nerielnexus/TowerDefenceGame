@@ -599,18 +599,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159072910}
   m_CullTransparentMesh: 0
---- !u!114 &181785871 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4388656248006101090, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2115591139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &202138324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1739,7 +1727,7 @@ GameObject:
   - component: {fileID: 798933682}
   m_Layer: 0
   m_Name: CameraManager
-  m_TagString: Untagged
+  m_TagString: CameraManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1839,13 +1827,8 @@ MonoBehaviour:
   buttonStartGame: {fileID: 725519509}
   buttonSelectToTitle: {fileID: 620963594}
   canvasSelectStage: {fileID: 147253481}
-  buttonOption: {fileID: 242663532}
-  canvasOption: {fileID: 1225111487}
-  creditField: {fileID: 181785871}
-  creditFieldText: {fileID: 1589332228}
-  buttonSaveCredit: {fileID: 1571626177}
-  buttonCancelCredit: {fileID: 893082312}
-  textLegitCredit: {fileID: 1055704655}
+  buttonCheatPanel: {fileID: 242663532}
+  canvasCheatPanel: {fileID: 1225111487}
   stageNameText: {fileID: 664675529}
   stageInfoText: {fileID: 676107996}
   stageFlavorText: {fileID: 631018440}
@@ -1974,18 +1957,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841076677}
   m_CullTransparentMesh: 0
---- !u!114 &893082312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4388656247763585727, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2115591139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &921360375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,18 +2142,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
---- !u!114 &1055704655 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4388656246322627449, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2115591139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1062565728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6025157757014541010, guid: b35b8ae32c1620b43a3b04ce5f84531d,
@@ -3411,18 +3370,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570965514}
   m_CullTransparentMesh: 0
---- !u!114 &1571626177 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4388656247197077450, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2115591139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1573580750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,18 +3675,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &1589332228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4388656246072642595, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2115591139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1667747012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4700,7 +4635,7 @@ PrefabInstance:
     - target: {fileID: 4388656246706808679, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
         type: 3}
       propertyPath: m_Name
-      value: canvas option
+      value: canvas cheat panel
       objectReference: {fileID: 0}
     - target: {fileID: 4388656246706808679, guid: 7074f93ba42e14e4fb85d3da6d5003e0,
         type: 3}
@@ -5024,6 +4959,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 713387129517946620, guid: 28446dc7084075d478cecc2097b112bd,
+        type: 3}
+      propertyPath: m_Name
+      value: buttonTMP cheat
+      objectReference: {fileID: 0}
+    - target: {fileID: 713387130800461006, guid: 28446dc7084075d478cecc2097b112bd,
+        type: 3}
+      propertyPath: m_text
+      value: Open Cheat
+      objectReference: {fileID: 0}
     - target: {fileID: 713387131287800881, guid: 28446dc7084075d478cecc2097b112bd,
         type: 3}
       propertyPath: m_Name
@@ -5032,7 +4977,7 @@ PrefabInstance:
     - target: {fileID: 713387131287800881, guid: 28446dc7084075d478cecc2097b112bd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 713387131287800882, guid: 28446dc7084075d478cecc2097b112bd,
         type: 3}

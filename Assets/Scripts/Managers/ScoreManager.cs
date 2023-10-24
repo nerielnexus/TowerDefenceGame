@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         killCount = 0;
-        credit = GameManager.Instance.currentCredit;
+        GameManager.Instance.currentCredit = GameManager.Instance.initialStartCredit;
     }
 
     public void SaveCredit()

@@ -11,7 +11,7 @@ public class InGameUIManager : MonoBehaviour
     public bool userOnSelectMap = false;
 
     [Header("Other Managers")]
-    public CameraManager camMgr = null;
+    public CameraManagerV2 camMgr = null;
     public MapManager mapMgr = null;
     public MobManager mobMgr = null;
     public ScoreManager scMgr = null;
@@ -30,15 +30,9 @@ public class InGameUIManager : MonoBehaviour
     public Button buttonSelectToTitle = null;
     public GameObject canvasSelectStage = null;
 
-    [Header("UI Elements - Options")]
-    public Button buttonOption = null;
-    public GameObject canvasOption = null;
-    public TMPro.TMP_InputField creditField = null;
-    public TMPro.TMP_Text creditFieldText = null;
-    public Button buttonSaveCredit = null;
-    public Button buttonCancelCredit = null;
-    public TMPro.TMP_Text textLegitCredit = null;
-    private int userInputCredit = 0;
+    [Header("UI Elements - Cheat Panel")]
+    public Button buttonCheatPanel = null;
+    public GameObject canvasCheatPanel = null;
 
     [Header("UI Elements - Select Stage Canvas, flavor text")]
     public TMPro.TMP_Text stageNameText = null;
@@ -53,7 +47,7 @@ public class InGameUIManager : MonoBehaviour
 
     private void InitializeElements()
     {
-        camMgr = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>()
+        camMgr = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManagerV2>()
             ?? throw new System.Exception(nameof(InGameUIManager) + " cannot find " + nameof(CameraManager));
 
         mapMgr = GameObject.FindGameObjectWithTag("MapManager").GetComponent<MapManager>()
@@ -166,65 +160,20 @@ public class InGameUIManager : MonoBehaviour
 
         /////////////////////////////////////////////////
 
-        if (buttonOption == null)
-            throw new System.Exception("Option button is null");
+        if (buttonCheatPanel == null)
+            throw new System.Exception(nameof(InGameUIManager) + " caannot find reference of " + nameof(buttonCheatPanel));
 
-        if (buttonSaveCredit == null)
-            throw new System.Exception("Save Credit button is null");
+        if (canvasCheatPanel == null)
+            throw new System.Exception(nameof(InGameUIManager) + " caannot find reference of " + nameof(canvasCheatPanel));
 
-        if (buttonCancelCredit == null)
-            throw new System.Exception("Cancel Credit button is null");
+        canvasCheatPanel.SetActive(false);
 
-        if (textLegitCredit == null)
-            throw new System.Exception("Text for legit credit is null");
-
-        if (creditField == null)
-            throw new System.Exception("Credit Field inputfield is null");
-
-        if (canvasOption == null)
-            throw new System.Exception("Option Canvas is null");
-
-        creditFieldText.text = "Start Credit";
-        textLegitCredit.text = "Please type positive integer";
-
-        buttonOption.onClick.AddListener(
+        buttonCheatPanel.onClick.AddListener(
             delegate
             {
-                canvasOption.SetActive(true);
+                canvasCheatPanel.SetActive(true);
             });
 
-        buttonSaveCredit.onClick.AddListener(
-            delegate
-            {
-                GameManager.Instance.currentCredit = userInputCredit;
-                userInputCredit = 0;
-                creditField.text = userInputCredit.ToString();
-                canvasOption.SetActive(false);
-            });
-
-        buttonCancelCredit.onClick.AddListener(
-            delegate
-            {
-                userInputCredit = 0;
-                creditField.text = userInputCredit.ToString();
-                canvasOption.SetActive(false);
-            });
-
-        creditField.onValueChanged.AddListener(
-            delegate
-            {
-                if(int.TryParse(creditField.text, out userInputCredit))
-                {
-                    textLegitCredit.text = "press save button to change initial credit (" + creditField.text + ")";
-                }
-                else
-                {
-                    textLegitCredit.text = "credit must be positive integer";
-                }
-            });
-
-        canvasOption.transform.GetChild(0).GetComponent<Image>().color *= new Color(1, 1, 1, 1.65f);
-        canvasOption.SetActive(false);
 
         /////////////////////////////////
 

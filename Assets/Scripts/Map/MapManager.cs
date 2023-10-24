@@ -43,7 +43,8 @@ public class MapManager : MonoBehaviour
     {
         StartCoroutine(GetRequest(fileUrl, (UnityWebRequest req) =>
             {
-                if(req.isNetworkError || req.isHttpError)
+                // if(req.isNetworkError || req.isHttpError)
+                if(req.result == UnityWebRequest.Result.ConnectionError||req.result == UnityWebRequest.Result.ProtocolError)
                 {
                     // 해당 error 가 발생한다면 여기서 처리할 것
                 }
